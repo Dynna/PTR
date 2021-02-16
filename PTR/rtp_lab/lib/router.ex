@@ -13,6 +13,8 @@ defmodule Router do
 
   @impl true
   def handle_cast({:router, message}, _smth) do
-    IO.puts("Received message: " + message)
+    #IO.inspect(%{"Received message: " => message})
+    MyIO.my_inspect(%{"Received message: " => message})
+    {:noreply, %{}}
   end
 end

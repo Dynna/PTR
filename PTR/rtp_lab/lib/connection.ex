@@ -9,6 +9,7 @@ defmodule Connection do
   def getMessage() do
     receive do
       message -> messageBehaviour(message)
+     #message -> IO.inspect message, label: “received message”
     end
   end
 
