@@ -12,9 +12,14 @@ defmodule Router do
   end
 
   @impl true
-  def handle_cast({:router, message}, _smth) do
+  def handle_cast({:router, message}, state) do
     #IO.inspect(%{"Received message: " => message})
     MyIO.my_inspect(%{"Received message: " => message})
-    {:noreply, %{}}
+    {:noreply, state}
+  end
+
+  def handle_info({:data}, state) do
+    IO.puts"Handle data"
+    {:noreply, state}
   end
 end
