@@ -1,4 +1,4 @@
-defmodule DynamicSupervisor do
+defmodule MyDynamicSupervisor do
   use DynamicSupervisor
 
   def start_link(_arg) do
@@ -31,4 +31,9 @@ defmodule DynamicSupervisor do
   def count_children do
     DynamicSupervisor.count_children(__MODULE__)
   end
+
+  def cast_message(message) do
+    GenServer.cast(Worker, {:worker, message})
+  end
+
 end

@@ -1,19 +1,15 @@
 defmodule Worker do
   use GenServer
 
-  def init({message, process_id}) do
-    {:ok, %{name: message, process_id: process_id}}
+  def init(message) do
+    {:ok, %{name: message}}
   end
 
-  def start_link([], {message, process_id}) do
-    start_link({message, process_id})
-  end
-
-  def start_link({message, process_id}) do
+  def start_link(message) do
     GenServer.start_link(
       __MODULE__,
-      {message, process_id},
-      name: {:global, "worker:#{message}"}
+      message,
+      name: __MODULE__
       )
   end
 
@@ -25,4 +21,8 @@ defmodule Worker do
     {:reply, {:ok, state}, state}
   end
 
+  def handle_cast({:worker, message}, _smth) do
+    MyIO.my_inspect(%{"Worker received: " => message})
+    {:noreply, %{}}
+  end
 end
