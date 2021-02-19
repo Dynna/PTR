@@ -16,7 +16,7 @@
 #      {:ok, %HTTPPoison.Response{status_code: 200, word: word}} ->
 #        rules = Poison.decode!(word)
 
-
+#
 #    end
 #    {:noreply, state}
 #  end
