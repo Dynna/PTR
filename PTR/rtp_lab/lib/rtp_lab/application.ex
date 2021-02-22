@@ -25,14 +25,18 @@ defmodule RtpLab.Application do
         start: {Router, :start_link, [""]}
       },
       %{
-        id: Connection,
+        id: Connection_url_2,
+        start: {Connection, :start_link, ["http://localhost:4000/tweets/2"]}
+      },
+      %{
+        id: Connection_url_1,
         start: {Connection, :start_link, ["http://localhost:4000/tweets/1"]}
       }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :rest_for_one, name: RtpLab.Supervisor]
+    opts = [strategy: :one_for_all, name: RtpLab.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

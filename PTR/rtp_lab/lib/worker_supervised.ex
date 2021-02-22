@@ -13,6 +13,10 @@ defmodule Worker do
       )
   end
 
+ # def call_worker({pid, low, high}) do
+ #   GenServer.cast(pid, {:set, low, high})
+ # end
+
   def get(pid) do
     GenServer.call(pid, :get)
   end
@@ -25,4 +29,10 @@ defmodule Worker do
     MyIO.my_inspect(%{"Worker received: " => message})
     {:noreply, %{}}
   end
+
+  def handle_info(message, expr \\ nil) do
+    MyIO.my_inspect(%{"HANDLE INFO: " => message})
+    {:noreply, %{}}
+  end
+
 end
