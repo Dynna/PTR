@@ -11,7 +11,7 @@ defmodule MyDynamicSupervisor do
   end
 
   # start worker process & add it to supervision
-  def add_worker(message) do
+  def start_worker(message) do
     child_spec = {Worker, {message}}
 
     DynamicSupervisor.start_child(__MODULE__, child_spec)
@@ -34,6 +34,12 @@ defmodule MyDynamicSupervisor do
 
   def cast_message(message) do
     GenServer.cast(Worker, {:worker, message})
+  end
+
+  def pid_children do
+    Enum.map(DynamicSupervisor.which_children(__MODULE__), fn x ->
+      Enum.at(Tuple.to_list(x), 1)
+    end)
   end
 
 end
