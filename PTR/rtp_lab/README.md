@@ -24,6 +24,7 @@ What has been done
 - read 2 SSE streams of actual Twitter API tweets in JSON format
 - to read SSE this project was used: https://github.com/cwc/eventsource_ex
 - built entities: connection, router, supervisor, worker
+- sent messages to worker using dynamic supervisor
 
 Results
 
