@@ -19,3 +19,13 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/rtp_lab](https://hexdocs.pm/rtp_lab).
 
+What has been done
+
+- read 2 SSE streams of actual Twitter API tweets in JSON format
+- to read SSE this project was used: https://github.com/cwc/eventsource_ex
+- built entities: connection, router, supervisor, worker
+
+Results
+
+![alt text](rtp_lab\gif\rtp_lab_gif.gif)
+
