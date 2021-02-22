@@ -27,5 +27,5 @@ What has been done
 
 Results
 
-![alt text](rtp_lab\gif\rtp_lab_gif.gif)
+![alt text](gif/rtp_lab_gif.gif)
 
