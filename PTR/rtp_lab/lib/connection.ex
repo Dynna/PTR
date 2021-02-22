@@ -6,6 +6,11 @@ defmodule Connection do
     getMessage()
   end
 
+  def start_link2(url2) do
+    {:ok, _pid} = EventsourceEx.new(url2, stream_to: self())
+    getMessage()
+  end
+
   def getMessage() do
     receive do
       message -> messageBehaviour(message)
