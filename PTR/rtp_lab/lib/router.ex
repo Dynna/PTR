@@ -1,4 +1,3 @@
-# server
 defmodule Router do
   use GenServer
 
@@ -13,8 +12,6 @@ defmodule Router do
 
   @impl true
   def handle_cast({:router, message}, state) do
-    #IO.inspect(%{"Received message: " => message})
-    #MyIO.my_inspect(%{"Received message: " => message})
     MyDynamicSupervisor.start_worker(message)
     MyDynamicSupervisor.cast_message(message)
     {:noreply, state}
