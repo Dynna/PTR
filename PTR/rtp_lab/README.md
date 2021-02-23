@@ -25,8 +25,10 @@ What has been done
 - to read SSE this project was used: https://github.com/cwc/eventsource_ex
 - built entities: connection, router, supervisor, worker
 - sent messages to worker using dynamic supervisor
+- parsed the message & extracted text sequence
+- calculated the sentiment score for each text sequence in a message
 
 Results
 
-![alt text](gif/rtp_lab_gif.gif)
+![alt text](gif/new_gif_rtp.gif)
 

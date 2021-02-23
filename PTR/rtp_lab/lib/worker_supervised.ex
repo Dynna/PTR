@@ -33,18 +33,18 @@ defmodule Worker do
   end
 
   def process_data(message) do
-    rm_characters = [",", ":", "?", ".", "!"]
-    text = read_json(message)
-    |> String.replace(rm_characters, "")
-    |> String.split(" ", trim: true)
     if message.data =~ "panic" do
-      MyIO.my_inspect("KILL MESSAGE HERE")
+      IO.inspect("KILL MESSAGE HERE")
     else
+      rm_characters = [",", ":", "?", ".", "!"]
+      text = read_json(message)
+      |> String.replace(rm_characters, "")
+      |> String.split(" ", trim: true)
       MyIO.my_inspect(%{"RECEIVED: " => text})
 
       analyzed_text = make_analysis(text)
       MyIO.my_inspect(%{"SENTIMENT SCORE: " => analyzed_text})
-      MyIO.my_inspect("=======================================================================================")
+      MyIO.my_inspect("================================================================================")
     end
   end
 
