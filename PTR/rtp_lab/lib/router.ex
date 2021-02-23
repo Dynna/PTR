@@ -14,6 +14,7 @@ defmodule Router do
   def handle_cast({:router, message}, state) do
     MyDynamicSupervisor.start_worker(message)
     MyDynamicSupervisor.cast_message(message)
+
     {:noreply, state}
   end
 
