@@ -23,7 +23,7 @@ defmodule Worker do
 
   def handle_cast({:worker, message}, _smth) do
     #MyIO.my_inspect(%{"Worker received: " => message})
-    process_data(message)
+   ####### process_data(message)
     {:noreply, %{}}
   end
 

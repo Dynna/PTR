@@ -15,6 +15,9 @@ defmodule Router do
     MyDynamicSupervisor.start_worker(message)
     MyDynamicSupervisor.cast_message(message)
 
+    EngDynamicSupervisor.start_worker(message)
+    EngDynamicSupervisor.cast_message(message)
+
     {:noreply, state}
   end
 

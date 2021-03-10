@@ -13,6 +13,14 @@ defmodule RtpLab.Application do
       # Starts a worker by calling: RtpLab.Worker.start_link(arg)
       # {RtpLab.Worker, arg}
       %{
+        id: EngWorker,
+        start: {EngWorker, :start_link, [""]}
+      },
+      %{
+        id: EngDynamicSupervisor,
+        start: {EngDynamicSupervisor, :start_link, [""]}
+      },
+      %{
         id: Worker,
         start: {Worker, :start_link, [""]}
       },
