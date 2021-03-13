@@ -12,7 +12,7 @@ defmodule EngDynamicSupervisor do
 
   # start worker process & add it to supervision
   def start_worker(message) do
-    child_spec = {EngWorker, {message}}
+    child_spec = %{id: EngWorker, start: {EngWorker, :start_link, [message]}, restart: :temporary, shutdown: :brutal_kill}
 
     DynamicSupervisor.start_child(__MODULE__, child_spec)
   end
