@@ -34,11 +34,11 @@ defmodule RtpLab.Application do
       },
       %{
         id: Connection_url_2,
-        start: {Connection, :start_link, ["http://localhost:4000/tweets/2"]}
+        start: {ConnectionEntity, :start_link, ["http://localhost:4000/tweets/2"]}
       },
       %{
         id: Connection_url_1,
-        start: {Connection, :start_link, ["http://localhost:4000/tweets/1"]}
+        start: {ConnectionEntity, :start_link, ["http://localhost:4000/tweets/1"]}
       }
     ]
 
