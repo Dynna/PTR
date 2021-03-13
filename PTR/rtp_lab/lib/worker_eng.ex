@@ -1,5 +1,5 @@
 defmodule EngWorker do
-  use GenServer, restart: :transient
+  use GenServer
 
   def init(message) do
     {:ok, %{name: message}}
@@ -21,7 +21,7 @@ defmodule EngWorker do
     {:reply, {:ok, state}, state}
   end
 
-  def handle_cast({:worker, message}, _smth) do
+  def handle_cast({:eng_worker, message}, _smth) do
     process_data(message)
     {:noreply, %{}}
   end
@@ -32,13 +32,13 @@ defmodule EngWorker do
   end
 
   def process_data(message) do
-    text = read_json(message)
-    if (text) do
+    ret_status = read_json(message)
+    if (ret_status) do
       retweets = (message["message"]["tweet"]["retweeted_status"]["retweeted_count"])
       favorites = (message["message"]["tweet"]["retweeted_status"]["favorite_count"])
       followers = (message["message"]["tweet"]["user"]["followers_count"])
       eng_ratio = (retweets + favorites)/followers
-      MyIO.my_inspect(%{"RECEIVED STATUS: " => text})
+      MyIO.my_inspect(%{"RECEIVED: " => text})
      # analyzed_text = make_analysis(text)
       MyIO.my_inspect(%{"ENGAGEMENT RATIO: " => eng_ratio})
       MyIO.my_inspect("================================================================================")

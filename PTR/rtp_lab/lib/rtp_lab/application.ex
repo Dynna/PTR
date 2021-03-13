@@ -17,12 +17,12 @@ defmodule RtpLab.Application do
         start: {EngWorker, :start_link, [""]}
       },
       %{
-        id: EngDynamicSupervisor,
-        start: {EngDynamicSupervisor, :start_link, [""]}
-      },
-      %{
         id: Worker,
         start: {Worker, :start_link, [""]}
+      },
+      %{
+        id: EngDynamicSupervisor,
+        start: {EngDynamicSupervisor, :start_link, [""]}
       },
       %{
         id: MyDynamicSupervisor,
