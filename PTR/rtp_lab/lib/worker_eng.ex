@@ -38,7 +38,7 @@ defmodule EngWorker do
       favorites = (message["message"]["tweet"]["retweeted_status"]["favorite_count"])
       followers = (message["message"]["tweet"]["user"]["followers_count"])
       eng_ratio = (retweets + favorites)/followers
-      MyIO.my_inspect(%{"RECEIVED: " => text})
+      MyIO.my_inspect(%{"RECEIVED: " => ret_status})
      # analyzed_text = make_analysis(text)
       MyIO.my_inspect(%{"ENGAGEMENT RATIO: " => eng_ratio})
       MyIO.my_inspect("================================================================================")
