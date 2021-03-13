@@ -1,4 +1,4 @@
-defmodule Connection do
+defmodule ConnectionEntity do
 
   def start_link(url) do
     {:ok, _pid} = EventsourceEx.new(url, stream_to: self())
