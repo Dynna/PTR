@@ -18,6 +18,8 @@ defmodule Router do
     EngDynamicSupervisor.start_worker(message)
     EngDynamicSupervisor.cast_message(message)
 
+    GenServer.cast(Sink, {:message, message})
+
     {:noreply, state}
   end
 

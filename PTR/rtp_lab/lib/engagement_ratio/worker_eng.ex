@@ -23,9 +23,9 @@ defmodule EngWorker do
 
   def handle_cast({:eng_worker, message}, _smth) do
     process_data(message)
-    {:ok, top} = Mongo.start_link(url: "mongodb://localhost:27017/rtp-tweets")
-    Mongo.insert_one(top, "sentiment", %{sentiment: "something"})
-    {:noreply, %{}}
+  #  {:ok, top} = Mongo.start_link(url: "mongodb://localhost:27017/rtp-tweets")
+   # Mongo.insert_one(top, "sentiment", %{sentiment: "something"})
+   # {:noreply, %{}}
   end
 
   def process_data(message) do
