@@ -12,6 +12,14 @@ defmodule Sink do
   end
 
   @impl true
+  def handle_cast({:message, message}, _smth) do
+    MyIO.my_inspect("ADDING ACTUAL TWEET")
+  #  Backpressure.insert(message)
+
+   {:noreply, %{}}
+  end
+
+  @impl true
   def handle_cast({:user, user}, _smth) do
     MyIO.my_inspect("ADDING USERS")
     Backpressure.insert_users(user)

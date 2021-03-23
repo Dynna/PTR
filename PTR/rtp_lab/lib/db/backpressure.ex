@@ -9,7 +9,7 @@ defmodule Backpressure do
   end
 
   def start_link(_arg) do
-    GenServer.start_link(__MODULE__, [], name: __MODULE__)
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
 
   def insert(element) do

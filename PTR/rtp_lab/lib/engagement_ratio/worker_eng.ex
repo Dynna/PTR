@@ -35,9 +35,9 @@ defmodule EngWorker do
       followers = (decoded_message["message"]["tweet"]["user"]["followers_count"])
       eng_ratio = (retweets + favorites)/followers
 
-      tweet = Poison.decode!(message.data)
-      user = (tweet["message"]["tweet"]["user"]["screen_name"])
-      tweet_ratio = %{message: tweet, tweet_ratio: eng_ratio}
+      decoded_message = Poison.decode!(message.data)
+      user = (decoded_message["message"]["tweet"]["user"]["screen_name"])
+      tweet_ratio = %{message: decoded_message, tweet_ratio: eng_ratio}
 
       GenServer.cast(Sink, {:tweet_ratio, tweet_ratio})
       GenServer.cast(Sink, {:user, user})
