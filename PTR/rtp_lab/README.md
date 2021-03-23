@@ -19,7 +19,20 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/rtp_lab](https://hexdocs.pm/rtp_lab).
 
-What has been done
+What has been done LAB WORK 2
+
+- adapted the dynamic supervisor and worker system to compute engagement ratio per tweet
+- connected project with mongo db
+- created rtp-tweets db and 2 collections: tweets & users
+- implemented backpressure mechanism - adaptive batching
+- loaded actual tweets, engagement ration and sentiment score into tweets collection
+- loaded users into users collection
+
+Results
+
+![alt text](gif/rtp_lab_2.gif)
+
+What has been done LAB WORK 1
 
 - read 2 SSE streams of actual Twitter API tweets in JSON format
 - to read SSE this project was used: https://github.com/cwc/eventsource_ex

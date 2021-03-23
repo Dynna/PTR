@@ -23,7 +23,7 @@ defmodule Backpressure do
   @impl true
   def handle_cast({:insert, element}, q) do
     up_q = [element | q]
-    if Enum.count(up_q) >= 100 do
+    if Enum.count(up_q) >= 128 do
       GenServer.cast(__MODULE__, :batch)
     end
 
@@ -33,7 +33,7 @@ defmodule Backpressure do
   @impl true
   def handle_cast({:insert_users, user}, q) do
     up_q = [user | q]
-    if Enum.count(up_q) >= 100 do
+    if Enum.count(up_q) >= 128 do
       GenServer.cast(__MODULE__, :batch_user)
     end
 
