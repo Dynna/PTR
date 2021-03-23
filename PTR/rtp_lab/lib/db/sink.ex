@@ -13,32 +13,34 @@ defmodule Sink do
 
   @impl true
   def handle_cast({:message, message}, _smth) do
-    MyIO.my_inspect("LOADING INTO DB")
-    Backpressure.insert(message)
+    MyIO.my_inspect("ADDING ACTUAL TWEET")
+  #  Backpressure.insert(message)
+
+   {:noreply, %{}}
+  end
+
+  @impl true
+  def handle_cast({:user, user}, _smth) do
+    MyIO.my_inspect("ADDING USERS")
+    Backpressure.load(%{user: user}, "users")
 
     {:noreply, %{}}
   end
 
   @impl true
-  def handle_cast({:eng_ratio, eng_ratio}, _smth) do
+  def handle_cast({:ratio, ratio}, _smth) do
     MyIO.my_inspect("ADDING ENGAGEMENT RATIO")
-    load(%{eng_ratio: eng_ratio}, "eng_ratio")
-
+   # Backpressure.load(%{ratio: ratio}, "tweets")
+    Backpressure.insert(ratio)
     {:noreply, %{}}
   end
 
   @impl true
   def handle_cast({:sentiment_score, sentiment_score}, _smth) do
     MyIO.my_inspect("ADDING SENTIMENT SCORE")
-    load(%{sentiment_score: sentiment_score}, "sentiment_score")
-
+    #Backpressure.load(%{sentiment_score: sentiment_score}, "tweets")
+    Backpressure.insert(sentiment_score)
     {:noreply, %{}}
-  end
-
-  def load(message, coll) do
-    MyIO.my_inspect("DB RECEIVEING")
-    {:ok, top} = Mongo.start_link(url: "mongodb://localhost:27017/rtp-tweets")
-    Mongo.insert_one!(top, coll, message)
   end
 
 end

@@ -23,9 +23,6 @@ defmodule EngWorker do
 
   def handle_cast({:eng_worker, message}, _smth) do
     process_data(message)
-  #  {:ok, top} = Mongo.start_link(url: "mongodb://localhost:27017/rtp-tweets")
-   # Mongo.insert_one(top, "sentiment", %{sentiment: "something"})
-   # {:noreply, %{}}
   end
 
   def process_data(message) do
@@ -37,11 +34,13 @@ defmodule EngWorker do
       favorites = (decoded_message["message"]["tweet"]["retweeted_status"]["favorite_count"])
       followers = (decoded_message["message"]["tweet"]["user"]["followers_count"])
       eng_ratio = (retweets + favorites)/followers
-      MyIO.my_inspect(%{"RECEIVED: " => ret_status})
-      MyIO.my_inspect(%{"ENGAGEMENT RATIO: " => eng_ratio})
-      MyIO.my_inspect("================================================================================")
-    else
-      MyIO.my_inspect(%{"ORIGINAL MESSAGE: " => message})
+
+      tweet = Poison.decode!(message.data)
+      user = (tweet["message"]["tweet"]["user"]["screen_name"])
+      ratio = %{message: tweet, ratio: eng_ratio}
+
+      GenServer.cast(Sink, {:ratio, ratio})
+      GenServer.cast(Sink, {:user, user})
     end
   end
 

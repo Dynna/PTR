@@ -22,8 +22,7 @@ defmodule Worker do
   end
 
   def handle_cast({:worker, message}, _smth) do
-    #MyIO.my_inspect(%{"Worker received: " => message})
-   ####### process_data(message)
+    process_data(message)
     {:noreply, %{}}
   end
 
@@ -40,11 +39,13 @@ defmodule Worker do
       text = read_json(message)
       |> String.replace(rm_characters, "")
       |> String.split(" ", trim: true)
-      MyIO.my_inspect(%{"RECEIVED: " => text})
 
       analyzed_text = make_analysis(text)
-      MyIO.my_inspect(%{"SENTIMENT SCORE: " => analyzed_text})
-      MyIO.my_inspect("================================================================================")
+
+      tweet = Poison.decode!(message.data)
+      user = (tweet["message"]["tweet"]["user"]["screen_name"])
+      sentiment = %{user: user, sentiment_score: analyzed_text}
+      GenServer.cast(Sink, {:sentiment_score, sentiment})
     end
   end
 
