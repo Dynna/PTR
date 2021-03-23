@@ -37,9 +37,9 @@ defmodule EngWorker do
 
       tweet = Poison.decode!(message.data)
       user = (tweet["message"]["tweet"]["user"]["screen_name"])
-      ratio = %{message: tweet, ratio: eng_ratio}
+      tweet_ratio = %{message: tweet, tweet_ratio: eng_ratio}
 
-      GenServer.cast(Sink, {:ratio, ratio})
+      GenServer.cast(Sink, {:tweet_ratio, tweet_ratio})
       GenServer.cast(Sink, {:user, user})
     end
   end
