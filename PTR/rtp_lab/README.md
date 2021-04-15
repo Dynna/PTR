@@ -24,8 +24,9 @@ What has been done LAB WORK 2
 - adapted the dynamic supervisor and worker system to compute engagement ratio per tweet
 - connected project with mongo db
 - created rtp-tweets db and 2 collections: tweets & users
+- added sink module
 - implemented backpressure mechanism - adaptive batching
-- loaded actual tweets, engagement ration and sentiment score into tweets collection
+- loaded actual tweets + engagement ratio and sentiment score into tweets collection
 - loaded users into users collection
 
 Results
