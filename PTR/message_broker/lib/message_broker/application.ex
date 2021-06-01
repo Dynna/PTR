@@ -10,11 +10,13 @@ defmodule MessageBroker.Application do
     children = [
       # Starts a worker by calling: MessageBroker.Worker.start_link(arg)
       # {MessageBroker.Worker, arg}
+      id: ListenerSupervisor,
+        start: {BrokerSupervisor, :start_link, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: MessageBroker.Supervisor]
+    opts = [strategy: :one_for_one, name: BrokerSupervisor]
     Supervisor.start_link(children, opts)
   end
 end
