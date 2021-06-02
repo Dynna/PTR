@@ -1,6 +1,6 @@
 FROM elixir
 
-WORKDIR /rtp_lab
+WORKDIR /message_broker
 
 COPY . .
 
